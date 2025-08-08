@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f1f5f9; 
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 16rem;
+    background-color: #1e293b; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.content {
+    margin-left: 16rem;
+    padding: 2.5rem;
+    width: calc(100% - 16rem);
+}
+
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #334155;
+    text-align: center;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    margin-top: auto;
+    border-top: 1px solid #334155;
+    text-align: center;
+}
+
+
+.sidebar-nav .nav-link {
+    color: #cbd5e1 !important; 
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #ffffff !important; 
+    background-color: #334155 !important; 
+}
+
+
+.sidebar-nav .nav-link.active {
+    background-color: #0f6496;
+    color: #ffffff !important;
+}
+
+
+.chart-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+}
+
+.banner-container {
+    height: 600px; 
+    position: relative; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/escritorio.jpg');
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 0.5rem; 
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    padding: 2rem; 
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+}
