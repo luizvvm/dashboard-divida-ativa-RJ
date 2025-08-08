@@ -27,16 +27,16 @@ layout_inicio = html.Div([
         
         
         html.H3("Análise Descritiva", className="text-2xl font-bold dark:text-white"),
-        
+        #################################################################################
             dcc.Graph(id='grafico-distribuicao-dos-valores-das-dividas-histograma'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Observando o histograma, é perceptivel para o leitor que a maioria das dívidas são de baixo valor, 
                 isto é, ficam abaixo de R$ 700.000,00. Observe também o Rug Plot na parte superior,
                 cada tracinho é uma dívida, note como eles formam uma linha grossa e quase contínua na extrema esquerda e,
                 como vão se dispersando e se tornando mais isolados à medida que o valor aumenta.""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-distribuicao-dos-valores-das-dividas-box-plot'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Agora, com este segundo gráfico da distribuição de valores por natureza da dívida, podemos perceber que a ideia de 
                 valor baixo e valor alto dependem muito do tipo da dívida.""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""Começando pelo IPTU e pelo ITBI, possuem a menor mediana de todas as categorias,
@@ -45,89 +45,159 @@ layout_inicio = html.Div([
                     além de também possuírem as caixas mais esticadas, o que mostra uma clara variação maior nos valores.""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""Por fim e a que mais se destaca, temos as dívidas de natureza "Outros", que é a que mais se destaca. Isso porque, possui a mediana mais alta e a caixa mais longa de todas elas, portanto,
                 possui alta variabilidade e alto valor, as dívidas são muito diferentes uma das outras aqui e, em geral, representam valores bem maiores também.""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-distribuicao-dos-scores-histograma'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-distribuicao-da-idade-das-dividas-barras'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
-            
+            #################################################################################
             dcc.Graph(id='grafico-composicao-da-carteira-por-natureza-tree-map'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-composicao-da-carteira-por-situacao-funnel'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-        
-        html.H3("Análise de Correlações", className="text-2xl font-bold dark:text-white"),
-
+            #################################################################################
+        html.H3("Análise de Correlações", className="text-2xl font-bold dark:text-white"),###
+            #################################################################################
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-valor-da-divida-vs-score-contour'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-
+            #################################################################################
             dcc.Graph(id='grafico-valor-da-divida-vs-natureza-violin'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
-        html.H3("Análise Temporal", className="text-2xl font-bold dark:text-white"),
-
+           ################################################################################## 
+        html.H3("Análise Temporal", className="text-2xl font-bold dark:text-white"),#########
+            #################################################################################
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-evolucao-da-inscricao-de-dividas-line'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-evolucao-por-natureza-soma-dividas-line'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
-            
+            #################################################################################
             dcc.Graph(id='grafico-matriz-de-priorizacao-estrategica-bubble'),
-            
+            #--------------------------------------------------------------------------------
             html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
             html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
                    texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",)
-
+            #################################################################################
     ]))
 ])
 
 #jaja mexo nisso, por enquanto é só um template
+
+
 layout_resumo = html.Div([
     html.H2("Painel de Resumo", className="display-5 fw-bold mb-4"),
-    html.P("Apresentação dos insights mais importantes de forma rápida, clara e direta.", className="lead mb-5"),
+    html.P("Apresentação de todos os gráficos feitos.", className="lead mb-5"),
+    #################################################################################
     dbc.Row([
+        
         dbc.Col(html.Div(className="chart-card", children=[
-            html.H5("Saldo Total por Tipo de Dívida", className="fw-semibold mb-4"),
-            dcc.Graph(id='grafico-saldo-por-natureza')
+            dcc.Graph(id='grafico-distribuicao-dos-valores-das-dividas-histograma')
         ]), width=6),
+        
+        
         dbc.Col(html.Div(className="chart-card", children=[
-            html.H5("Composição da Dívida por Quantidade", className="fw-semibold mb-4"),
-            dcc.Graph(id='grafico-qtde-por-natureza')
+            dcc.Graph(id='grafico-distribuicao-dos-valores-das-dividas-box-plot')
         ]), width=6),
     ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-distribuicao-dos-scores-histograma')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-distribuicao-da-idade-das-dividas-barras')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-composicao-da-carteira-por-natureza-tree-map')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-composicao-da-carteira-por-situacao-funnel')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-valor-da-divida-vs-score-contour')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-valor-da-divida-vs-natureza-violin')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-evolucao-da-inscricao-de-dividas-line')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-evolucao-por-natureza-soma-dividas-line')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-matriz-de-priorizacao-estrategica-bubble')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='ainda-sem')
+        ]), width=6),
+    ]),
+    #################################################################################
+    
     html.Div(className="chart-card", children=[
         html.H5("Evolução Anual: Inscrições, Quitações e Cancelamentos", className="fw-semibold mb-4"),
         dcc.Graph(id='grafico-evolucao-temporal'),
@@ -135,6 +205,8 @@ layout_resumo = html.Div([
                         marks={str(ano): str(ano) for ano in range(1980, 2025, 5)})
     ])
 ])
+
+
 
 layout_analise = html.Div([ html.H2("Página de Análise Estratégica (Implementar)") ])
 layout_busca = html.Div([ html.H2("Página da Ferramenta de Busca (Implementar)") ])
