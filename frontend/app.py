@@ -4,7 +4,7 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, html
 
-from layout import create_layout, layout_inicio, layout_resumo, layout_geral, layout_analise, layout_busca
+from layout import create_layout, layout_inicio, layout_resumo, layout_geral, layout_busca
 
 external_scripts = [{"src": "https://cdn.tailwindcss.com"}]
 external_stylesheets = [
@@ -23,8 +23,7 @@ server = app.server
 app.layout = create_layout()
 
 # Importa os callbacks para que sejam registrados pelo Dash
-import callbacks_resumo
-import callbacks_analise
+import callbacks_graficos
 import callbacks_busca
 
 
@@ -36,8 +35,6 @@ def render_page_content(pathname):
         return layout_resumo
     elif pathname == "/geral":
         return layout_geral
-    elif pathname == "/analise":
-        return layout_analise
     elif pathname == "/busca":
         return layout_busca
     # Se a URL não for reconhecida, retorna uma mensagem de erro 404

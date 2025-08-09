@@ -18,7 +18,25 @@ layout_inicio = html.Div([
             html.P("""Este dash-board tem como objetivo apresentar e levantar insights valiosos acerda da Dívida Ativa da Procuradoria Geral do Município do Rio de Janeiro (PGM-Rio),
                 para isso utilizaremos mais de 6000 dados disponibilizados pelo LAMDEC, Laboratório de Métodos de Suporte à Tomada de Decisão,
                 caracterizado como Grupo de Pesquisa, Desenvolvimento e Inovação (PD&I) do Instituto de Matemática (IM) da Universidade Federal do Rio de Janeiro (UFRJ).""", className="mb-3 text-gray-500 dark:text-gray-400"),
-        
+            html.P("""Para tal, esse dashboard foi organizado da seguinte forma:""", className="mb-3 text-gray-500 dark:text-gray-400"),
+            html.Div([
+            html.Ul([
+            html.Li([
+                html.Span("Início: ", className="font-semibold text-gray-900 dark:text-white"),
+                html.Span("Contém análises com gráficos acerca da Dívida Ativa da PGM-Rio.", className="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400"),
+            ]),
+            html.Li([
+                html.Span("Resumo: ", className="font-semibold text-gray-900 dark:text-white"),
+                html.Span("Contém uma análise resumida com dados pré-processados acerca da Dívida Ativa da PGM-Rio", className="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400"),
+                ]),
+            html.Li([
+                html.Span("Painel Geral: ", className="font-semibold text-gray-900 dark:text-white"),
+                html.Span("Reune todos os gráficos desenvolvidos com os dados da Dívida Ativa", className="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400")
+                ]),
+            html.Li([
+                html.Span("Ferramenta de Busca: ", className="font-semibold text-gray-900 dark:text-white"), 
+                html.Span("Fornece a possibilidade de filtrar e visualizar os dados.", className="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400"),]),
+    ]),], className="mb-3"),
         
         html.H3("O que é a Dívida Ativa?", className="text-2xl font-bold dark:text-white"),
         
@@ -27,6 +45,11 @@ layout_inicio = html.Div([
         
         
         html.H3("Análise Descritiva", className="text-2xl font-bold dark:text-white"),
+            html.P("""Observando o histograma, é perceptivel para o leitor que a maioria das dívidas são de baixo valor, 
+            isto é, ficam abaixo de R$ 700.000,00. Observe também o Rug Plot na parte superior,
+            cada tracinho é uma dívida, note como eles formam uma linha grossa e quase contínua na extrema esquerda e,
+            como vão se dispersando e se tornando mais isolados à medida que o valor aumenta.""", className="mb-3 text-gray-500 dark:text-gray-400",),
+        
         #################################################################################
             dcc.Graph(id='grafico-distribuicao-dos-valores-das-dividas-histograma'),
             #--------------------------------------------------------------------------------
@@ -118,9 +141,9 @@ layout_resumo = html.Div([
     html.Div(
         [
             # O título fica DENTROOOOOOOOOOOOO do banner
-            html.H2("Análise da Dívida Ativa", className="display-5 fw-bold"),
+            html.H2("Resumo da Dívida Ativa", className="display-5 fw-bold"),
         ],
-        className="banner-container mb-5"
+        className="banner-container-pag2 mb-5"
     ),
     dbc.Card(dbc.CardBody([
         html.H3("Introdução", className="text-2xl font-bold dark:text-white"),
@@ -332,9 +355,130 @@ layout_geral = html.Div([
 ])
 
 
-
-layout_analise = html.Div([ html.H2("Página de Análise Estratégica (Implementar)") ])
-layout_busca = html.Div([ html.H2("Página da Ferramenta de Busca (Implementar)") ])
+######################################
+layout_busca = html.Div([
+    html.H2("Ferramenta de Busca de Dívidas", className="display-5 fw-bold mb-4"),
+    
+    dbc.Card(
+        dbc.CardBody([
+            dbc.Row([
+                dbc.Col([
+                    html.H5("Filtros", className="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white"),
+            
+                    # Filtro por Natureza
+                    html.Div([
+                    dbc.Label("Natureza da Dívida:"),
+                    dcc.Dropdown(
+                        id='filtro-natureza',
+                        options=[
+                            {'label': 'IPTU', 'value': 'IPTU'},
+                            {'label': 'ISS', 'value': 'ISS'},
+                            {'label': 'ITBI', 'value': 'ITBI'},
+                            {'label': 'Taxas', 'value': 'Taxas'},
+                            {'label': 'Multas', 'value': 'Multas'},
+                        ],
+                        placeholder='Selecione uma natureza',
+                        ),
+                    ],className="mt-3 text-base text-gray-900 dark:text-white font-bold"),
+                    
+                    
+                    # Filtro por Situação
+                    html.Div([
+                        html.Div([
+                    dbc.Label("Situação da Dívida:"),
+                        ], className="mt-3 text-base text-gray-900 dark:text-white font-bold",),
+                    dcc.Dropdown(
+                        id='filtro-agrupamento_situacao',
+                        options=[
+                            {'label': 'Em cobrança', 'value': 'em cobrança'},
+                            {'label': 'Quitada', 'value': 'quitada'},
+                            {'label': 'Cancelada', 'value': 'cancelada'},
+                        ],
+                        placeholder='Selecione uma situação',
+                        className="text-base text-gray-900 dark:text-white font-bold"
+                    ),
+                    ]),
+                    html.Div([
+                    dbc.Label("Ano da Inscrição:"),
+                    dcc.Input(id='filtro-ano', type='number', className="form-control mb-2"),
+                    ],className="mt-3 text-base text-gray-900 dark:text-white font-bold"),
+                    
+                ], width=6),
+                
+                # Coluna da Ordenação
+                dbc.Col([
+                    html.H5("Ordenação", className="mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-2xl lg:text-2xl dark:text-white"),
+                    # Ordenar por
+                    html.Div([
+                    html.Div([
+                    dbc.Label("Ordenar por:"),
+                    ],className="mt-3 text-base text-gray-900 dark:text-white font-bold",),
+                    dcc.Dropdown(
+                        id='ordenar-por',
+                        options=[
+                            {'label': 'Saldo da Dívida', 'value': 'valor_saldo_atualizado'},
+                            {'label': 'Ano da Inscrição', 'value': 'ano'},
+                            {'label': 'Score', 'value': 'score'}
+                        ],
+                        value='valor_saldo_atualizado', # Valor padrão
+                        clearable=False,
+                    ),
+                    ]),
+                    
+                    # Ordem
+                    html.Div([
+                    html.Div([
+                    dbc.Label("Ordem:"),
+                    ],className="mt-3 text-base text-gray-900 dark:text-white font-bold",),
+                    dcc.RadioItems(
+                        id='ordem',
+                        options=[
+                            {'label': 'Descendente', 'value': 'desc'},
+                            {'label': 'Ascendente', 'value': 'asc'},
+                        ],
+                        value='desc', # Valor padrão
+                        inline=True,
+                        labelStyle={'margin-right': '20px'}
+                    ),
+                    ]),
+                ], width=6)
+            ]),
+            
+            dbc.Row(
+                dbc.Col(
+                    dbc.Button("Buscar", id='botao-buscar', color="primary", className="mt-3"),
+                    width={"size": 6, "offset": 3}
+                ),
+                className="text-center"
+            )
+        ]),
+    ),
+    
+    # Div para a Tabela de Resultados
+    html.Div([
+        html.H4("Resultados da Busca"),
+        dbc.Spinner(
+            dash_table.DataTable(
+                id='tabela-resultados-busca',
+                columns=[
+                    {"name": "CDA", "id": "numCDA"},
+                    {"name": "Ano", "id": "ano"},
+                    {"name": "Natureza", "id": "natureza"},
+                    {"name": "Valor (R$)", "id": "valor_saldo_atualizado", "type": "numeric", "format": {"specifier": ",.2f"}},
+                    {"name": "Score", "id": "score", "type": "numeric", "format": {"specifier": ".2f"}},
+                    {"name": "Situação", "id": "agrupamento_situacao"},
+                ],
+                page_size=15,  
+                style_table={'overflowX': 'auto'},
+                style_cell={'textAlign': 'center'},
+                style_header={
+                    'backgroundColor': 'rgb(230, 230, 230)',
+                    'fontWeight': 'bold'
+                }
+            )
+        )
+    ])
+])
 
 
 def create_layout():
@@ -367,9 +511,8 @@ def create_layout():
         dbc.Nav(
             [
                 dbc.NavLink([html.I(className="bi bi-house-door fs-5"), html.Span("Início", className="ms-3")], href="/", active="exact"),
-                dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("resumo", className="ms-3")], href="/resumo", active="exact"),
+                dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("Resumo", className="ms-3")], href="/resumo", active="exact"),
                 dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("Painel Geral", className="ms-3")], href="/geral", active="exact"),
-                dbc.NavLink([html.I(className="bi bi-bar-chart-line fs-5"), html.Span("Análise Estratégica", className="ms-3")], href="/analise", active="exact"),
                 dbc.NavLink([html.I(className="bi bi-search fs-5"), html.Span("Ferramenta de Busca", className="ms-3")], href="/busca", active="exact"),
             ],
             vertical=True,

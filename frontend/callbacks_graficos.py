@@ -1,4 +1,4 @@
-# callbacks_resumo.py
+# callbacks_graficos.py
 import plotly.express as px
 import pandas as pd
 from dash import callback, Output, Input

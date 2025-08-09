@@ -91,3 +91,20 @@ body {
     color: white; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
 }
+
+.banner-container-pag2 {
+    height: 600px; 
+    position: relative; 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/resumo.jpg');
+    background-size: cover; 
+    background-position: center; 
+    border-radius: 0.5rem; 
+    display: flex;
+    align-items: center;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    padding: 2rem; 
+    color: white; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); 
+}
