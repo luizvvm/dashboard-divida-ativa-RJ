@@ -28,7 +28,7 @@ def read_root():
 def get_resumo(file_name: str):
     file_path = f"data/{file_name}.json"
     try:
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         return data
     except FileNotFoundError:

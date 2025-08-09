@@ -113,11 +113,90 @@ layout_inicio = html.Div([
     ]))
 ])
 
-#jaja mexo nisso, por enquanto é só um template
-
 
 layout_resumo = html.Div([
-    html.H2("Painel de Resumo", className="display-5 fw-bold mb-4"),
+    html.Div(
+        [
+            # O título fica DENTROOOOOOOOOOOOO do banner
+            html.H2("Análise da Dívida Ativa", className="display-5 fw-bold"),
+        ],
+        className="banner-container mb-5"
+    ),
+    dbc.Card(dbc.CardBody([
+        html.H3("Introdução", className="text-2xl font-bold dark:text-white"),
+        
+            html.P("""Este dash-board tem como objetivo apresentar e levantar insights valiosos acerda da Dívida Ativa da Procuradoria Geral do Município do Rio de Janeiro (PGM-Rio),
+                para isso utilizaremos mais de 6000 dados disponibilizados pelo LAMDEC, Laboratório de Métodos de Suporte à Tomada de Decisão,
+                caracterizado como Grupo de Pesquisa, Desenvolvimento e Inovação (PD&I) do Instituto de Matemática (IM) da Universidade Federal do Rio de Janeiro (UFRJ).""", className="mb-3 text-gray-500 dark:text-gray-400"),
+        
+        
+        html.H3("O que é a Dívida Ativa?", className="text-2xl font-bold dark:text-white"),
+        
+            html.P("""A Dívida Ativa é, essencialmente, um cadastro de inadimplentes do município. É a formalização de todas as dívidas que pessoas físicas ou jurídicas,
+                têm com a Prefeitura e que já estão com o prazo de pagamento vencido.""", className="mb-3 text-gray-500 dark:text-gray-400",),
+        
+            #################################################################################
+            dcc.Graph(id='grafico-inscricoes_cdas-line'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-quantidade_cdas-bar'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-saldo_cdas-bar'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-quantidade_cdas-pie'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-saldo_cdas-pie'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-distribuicao_cdas-parallel'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-montante_acumulado_cdas-3d'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-montante_acumulado_cdas-line'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            #################################################################################
+            dcc.Graph(id='grafico-montante_acumulado_cdas-heatmap'),
+            #--------------------------------------------------------------------------------
+            html.P("""Não sei interpretar essa merda ainda, então aqui vai um monte de texto exto exteot texto texto texto texto texto texto texto texto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",),
+            html.P("""texto texto texto texto texto textotexto texto textotexto texto textotexto texto textotexto texto texto
+                   texto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto textotexto texto texto""", className="mb-3 text-gray-500 dark:text-gray-400",)
+            #################################################################################
+    ]))
+])
+
+
+
+layout_geral = html.Div([
+    html.H2("Painel Geral", className="display-5 fw-bold mb-4"),
     html.P("Apresentação de todos os gráficos feitos.", className="lead mb-5"),
     #################################################################################
     dbc.Row([
@@ -193,17 +272,63 @@ layout_resumo = html.Div([
         
         
         dbc.Col(html.Div(className="chart-card", children=[
-            dcc.Graph(id='ainda-sem')
+            dcc.Graph(id='grafico-inscricoes_cdas-line')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-quantidade_cdas-bar')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-saldo_cdas-bar')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-quantidade_cdas-pie')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-saldo_cdas-pie')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-distribuicao_cdas-parallel')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-montante_acumulado_cdas-3d')
+        ]), width=6),
+    ]),
+    #################################################################################
+    #################################################################################
+    dbc.Row([
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-montante_acumulado_cdas-line')
+        ]), width=6),
+        
+        
+        dbc.Col(html.Div(className="chart-card", children=[
+            dcc.Graph(id='grafico-montante_acumulado_cdas-heatmap')
         ]), width=6),
     ]),
     #################################################################################
     
-    html.Div(className="chart-card", children=[
-        html.H5("Evolução Anual: Inscrições, Quitações e Cancelamentos", className="fw-semibold mb-4"),
-        dcc.Graph(id='grafico-evolucao-temporal'),
-        dcc.RangeSlider(id='slider-ano', min=1980, max=2024, step=1, value=[2010, 2024],
-                        marks={str(ano): str(ano) for ano in range(1980, 2025, 5)})
-    ])
 ])
 
 
@@ -242,7 +367,8 @@ def create_layout():
         dbc.Nav(
             [
                 dbc.NavLink([html.I(className="bi bi-house-door fs-5"), html.Span("Início", className="ms-3")], href="/", active="exact"),
-                dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("Painel de Resumo", className="ms-3")], href="/resumo", active="exact"),
+                dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("resumo", className="ms-3")], href="/resumo", active="exact"),
+                dbc.NavLink([html.I(className="bi bi-pie-chart fs-5"), html.Span("Painel Geral", className="ms-3")], href="/geral", active="exact"),
                 dbc.NavLink([html.I(className="bi bi-bar-chart-line fs-5"), html.Span("Análise Estratégica", className="ms-3")], href="/analise", active="exact"),
                 dbc.NavLink([html.I(className="bi bi-search fs-5"), html.Span("Ferramenta de Busca", className="ms-3")], href="/busca", active="exact"),
             ],

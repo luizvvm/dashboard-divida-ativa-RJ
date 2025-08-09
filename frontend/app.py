@@ -4,7 +4,7 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, html
 
-from layout import create_layout, layout_inicio, layout_resumo, layout_analise, layout_busca
+from layout import create_layout, layout_inicio, layout_resumo, layout_geral, layout_analise, layout_busca
 
 external_scripts = [{"src": "https://cdn.tailwindcss.com"}]
 external_stylesheets = [
@@ -34,6 +34,8 @@ def render_page_content(pathname):
         return layout_inicio
     elif pathname == "/resumo":
         return layout_resumo
+    elif pathname == "/geral":
+        return layout_geral
     elif pathname == "/analise":
         return layout_analise
     elif pathname == "/busca":

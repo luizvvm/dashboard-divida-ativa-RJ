@@ -288,7 +288,7 @@ def line_geid(data):
 )
 
 
-def line_geid(data):
+def line_gensd(data):
     if not data:
         return go.Figure() 
 
@@ -316,7 +316,7 @@ def line_geid(data):
     Input("store-dados-principais", "data")
 )
 
-def line_geid(data):
+def line_gmpe(data):
     if not data:
         return go.Figure() 
 
@@ -327,3 +327,312 @@ def line_geid(data):
                     hover_name="numCDA", log_x=True, size_max=60, title="Como a composição percentual mudou ao longo do tempo?")
 
     return fig
+
+
+ 
+@callback(
+    Output("grafico-quantidade_cdas-bar", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_quantidade_cdas_bar(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/quantidade_cdas"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+        
+        fig = px.bar(df_resumo, x='name', y='Quantidade', title="Quantidade de Dívidas por Natureza")
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+    
+@callback(
+    Output("grafico-saldo_cdas-bar", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_saldo_cdas_bar(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/saldo_cdas"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+
+        
+        fig = px.bar(df_resumo, x='name', y='Saldo', title="Valor Total da Dívida por Natureza")
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+
+
+@callback(
+    Output("grafico-quantidade_cdas-pie", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_quantidade_cdas(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/quantidade_cdas"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+
+        
+        fig = px.pie(df_resumo, values='Quantidade', names='name', title="Composição da Carteira por Quantidade de Títulos")
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+    
+    
+@callback(
+    Output("grafico-saldo_cdas-pie", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_saldo_cdas(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/saldo_cdas"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+
+        
+        fig = px.pie(df_resumo, values='Saldo', names='name', title="Composição da Carteira por Valor")
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+
+@callback(
+    Output("grafico-inscricoes_cdas-line", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_inscricoes_cdas_line(data):
+    try:
+        api_url1 = "http://127.0.0.1:8000/resumo/inscricoes"
+        response1 = requests.get(api_url1)
+        response1.raise_for_status()
+        dados1 = response1.json()
+        
+        df_resumo1 = pd.DataFrame(dados1)
+        df_resumo1['natureza'] = 'Total de Inscrições'
+        
+        api_url2 = "http://127.0.0.1:8000/resumo/inscricoes_canceladas"
+        response2 = requests.get(api_url2)
+        response2.raise_for_status()
+        dados2 = response2.json()
+        
+        df_resumo2 = pd.DataFrame(dados2)
+        df_resumo2['natureza'] = 'Inscrições Canceladas'
+        
+        api_url3 = "http://127.0.0.1:8000/resumo/inscricoes_quitadas"
+        response3 = requests.get(api_url3)
+        response3.raise_for_status()
+        dados3 = response3.json()
+        df_resumo3 = pd.DataFrame(dados3)
+        df_resumo3['natureza'] = 'Inscrições Quitadas'
+
+        df_agrupado = pd.concat([df_resumo1, df_resumo2, df_resumo3], ignore_index=True)
+
+        df_agrupado = df_agrupado.sort_values('ano')
+
+        fig = px.line(
+            df_agrupado, 
+            x='ano', 
+            y='Quantidade', 
+            color='natureza', 
+            title="Evolução das Inscrições, Cancelamentos e Quitações por Ano",
+            labels={
+                "ano": "Ano",
+                "Quantidade": "Número de CDAs",
+                "natureza": "Status da Inscrição"
+            },
+            markers=True 
+        )
+
+        fig.update_xaxes(rangeslider_visible=True)
+
+    
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+    
+@callback(
+    Output("grafico-distribuicao_cdas-parallel", "figure"),
+    Input("store-dados-principais", "data")
+)
+#USAR ESSE DE EXEMPLO, ESSE ESTÁ BONITINHO###############################################################################################
+def line_distribuicao_cdas(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/distribuicao_cdas"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+        fig = px.bar(
+            df_resumo,
+            x='name',
+            y=['Em cobrança', 'Cancelada', 'Quitada'],
+            
+            title='<b>Comparativo de Situação das Dívidas por Tipo</b>',
+            labels={
+                'name': 'Tipo de Dívida',
+                'value': 'Valor / Percentual',
+                'variable': 'Situação'
+            },
+            
+            barmode='group'
+        )
+
+        fig.update_layout(
+            title_x=0.5,
+            legend_title_text='Situação'
+        )
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+    
+@callback(
+    Output("grafico-montante_acumulado_cdas-3d", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_montante_acumulado_cdas_3d(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/montante_acumulado"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+        
+        x_data = df_resumo['Percentual']
+        z_data = df_resumo.drop(columns=['Percentual'])
+        y_data = z_data.columns
+        
+        fig = go.Figure(data=[
+            go.Surface(
+                x = df_resumo["Percentual"],
+                y = y_data,
+                z = z_data.values,
+                colorscale='Viridis'
+            )
+        ])
+
+        fig.update_layout(
+            title='Superfície de Concentração da Dívida',
+            autosize=True,
+            scene=dict(
+                xaxis_title='Devedores (%)',
+                yaxis_title='Natureza',
+                zaxis_title='Valor Acumulado (%)'
+            ), margin=dict(l=65, r=50, b=65, t=90),
+        )
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+    
+@callback(
+    Output("grafico-montante_acumulado_cdas-line", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_inscricoes_cdas_line(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/montante_acumulado"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+        colunas_das_linhas = ['IPTU', 'ISS', 'Taxas', 'Multas', 'ITBI']
+        df_resumo = df_resumo.sort_values('Percentual')
+        fig = px.line(
+            df_resumo, 
+            x='Percentual', 
+            y=colunas_das_linhas, 
+            title="Curva de Concentração de Valor por Natureza",
+            labels={
+                "Percentual": "Devedores Acumulados (%)",
+                "value": "Dívida Acumulada (%)",
+                "variable": "Natureza da Dívida"
+            },
+            markers=True 
+        )
+
+        fig.update_xaxes(rangeslider_visible=True)
+
+    
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
+
+@callback(
+    Output("grafico-montante_acumulado_cdas-heatmap", "figure"),
+    Input("store-dados-principais", "data")
+)
+
+def line_inscricoes_cdas_heatmap(data):
+    try:
+        api_url = "http://127.0.0.1:8000/resumo/montante_acumulado"
+        response = requests.get(api_url)
+        response.raise_for_status()
+        dados = response.json()
+        
+        df_resumo = pd.DataFrame(dados)
+        df_resumo = df_resumo.sort_values('Percentual')
+        df_heatmap = df_resumo.set_index('Percentual')
+
+        fig = px.imshow(
+                df_heatmap.transpose(), 
+                aspect="auto", 
+                color_continuous_scale='YlOrRd',
+                title="Mapa de Calor",
+                labels=dict(x="Devedores (%)", y="Natureza da Dívida", color="Valor Acumulado (%)")
+            )
+
+        return fig
+
+    except requests.exceptions.RequestException as e:
+    # Em caso de erro, retorna um box plot vazio com a mensagem
+        return px.box().update_layout(title_text=f"Erro ao conectar à API: {e}")
+    
