@@ -8,10 +8,10 @@ O objetivo do desafio era construir uma aplicação web de um dashboard, consist
 O projeto aqui desenvolvido busca fornecer insights valiosos sobre a carteira de dívidas da PGM-Rio.
 
 ### Principais Funcionalidades
-- **API Robusta**: Backend em FastAPI que serve dados a partir de arquivos JSON com:
-  - Endpoints para dados resumidos;
+- **API**: Backend em FastAPI que serve dados a partir de arquivos JSON com:
+  - Endpoints para dados `/resumo/`;
   - Ferramenta de busca (`/cda/search`).
-- **Páginas Modulares**:
+- **Páginas**:
   - **Início**: Apresentação do projeto e análises iniciais com gráficos dos dados gerais do endpoint (`search`);
   - **Resumo**: Outras análises com gráficos dos dados do endpoint (`resumo`);
   - **Painel Geral**: Todos os gráficos resumidos em um só lugar;
@@ -36,7 +36,7 @@ O projeto aqui desenvolvido busca fornecer insights valiosos sobre a carteira de
 **Organização**
 - Usei "Black" para identar o código. Se quiser as versões sem identação bonitinha, acesse o último commit do dia 09/10/2025.
 
-### Passos de Execução:
+## Passos de Execução:
 1. **Backend**
 Da pasta raiz do projeto, abra um terminal para rodar o servidor:
 ```bash
@@ -66,7 +66,7 @@ python app.py
 ```
 Dai basta acessar a url indicada no terminal.
 
-### O que eu fiz para construir o projeto:
+## O que eu fiz para construir o projeto:
 
 Esse projeto foi muito enriquecedor para mim porque, durante ele, li muita documentação e aprendi muitas coisas novas. Eu iniciei o desafio lendo a documentação:
 [FastAPI](https://fastapi.tiangolo.com/pt/tutorial/first-steps/)
@@ -84,9 +84,9 @@ Dai eu fiz a API no primeiro dia. Já no segundo dia o foco mudou para a constru
 
 **Os gráficos**: Fiz todos os gráficos seguindo a risca os tutoriais do plotly, que alias são muito bons, alguns gráficos mais simples eu já tinha o costume e já sabia fazer, então foi mais tranquilo, mas alguns outros gráficos eu tive que aprender a fazer pela a documentação, o que não foi dificil sinceramente. Todos os gráficos feitos com plotly.express foram bem faceis de fazer pela documentação, já os feitos pelo Plotly Express eu confeço que tive dificuldades, pois ainda não tenho muito familiaridade com essa técnologia, mas como foi só seguir a documentação eu consegui fazer também.
 
-**Maior desafio: Performance com dcc.Store**: Depois de ter feitos os gráficos usando plotly, percebi que eu fiz cada gráfico fazer uma chamada à API, tornando o dashboard meio lento e bem propenso a erros de carregamento. A solução foi carregar todos os dados necessários da API uma única vez na inicialização e armazená-los em um `dcc.Store` no navegador do cliente. Os callbacks dos gráficos passaram a ler deste "armazém" local. Para essa parte eu precisei recorrer a IA para entender como eu poderia otimizar o dashboard.
+**Maior desafio (Performance com dcc.Store)**: Depois de ter feitos os gráficos usando plotly, percebi que eu fiz cada gráfico fazer uma chamada à API, tornando o dashboard meio lento e bem propenso a erros de carregamento. A solução foi carregar todos os dados necessários da API uma única vez na inicialização e armazená-los em um `dcc.Store` no navegador do cliente. Os callbacks dos gráficos passaram a ler deste "armazém" local. Para essa parte eu precisei recorrer a IA para entender como eu poderia otimizar o dashboard.
 
-#### Links Úteis
+### Links Úteis
 
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Documentação do Dash](https://dash.plotly.com/)
