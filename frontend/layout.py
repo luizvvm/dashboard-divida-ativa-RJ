@@ -736,7 +736,12 @@ layout_busca = html.Div(
                                     # Filtro por Natureza
                                     html.Div(
                                         [
-                                            dbc.Label("Natureza da Dívida:"),
+                                            html.Div(
+                                                [
+                                                    dbc.Label("Natureza da Dívida:"),
+                                                ],
+                                                className="mt-3 text-base text-gray-900 dark:text-white font-bold",
+                                            ),
                                             dcc.Dropdown(
                                                 #ID que salva o valor que será enviado para o callback_busca
                                                 #Dependendo da opção selecionada, um valor diferente é passado
@@ -766,7 +771,6 @@ layout_busca = html.Div(
                                                 placeholder="Selecione uma natureza",
                                             ),
                                         ],
-                                        className="mt-3 text-base text-gray-900 dark:text-white font-bold",
                                     ),
                                     # Filtro por Situação
                                     html.Div(
@@ -796,7 +800,6 @@ layout_busca = html.Div(
                                                     },
                                                 ],
                                                 placeholder="Selecione uma situação",
-                                                className="text-base text-gray-900 dark:text-white font-bold",
                                             ),
                                         ]
                                     ),
