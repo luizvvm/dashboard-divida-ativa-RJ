@@ -7,7 +7,10 @@ from app import app
 import plotly.graph_objects as go
 
 
-@callback(Output("store-dados-principais", "data"), Input("url", "pathname"))
+@callback(
+    Output("store-dados-principais", "data"),
+    Input("url", "pathname") #a função abaixo é executada toda vez que alguém troca de url. Se pa da pra otimizar isso mas n tenho tempo
+    )
 def carregar_dados_principais(pathname):
     dados_completos = {}
 
@@ -25,17 +28,27 @@ def carregar_dados_principais(pathname):
     for nome, url in endpoints.items():
         try:
             response = requests.get(
-                url, timeout=10
-            )  # Não tira o timeout nunca plmds, é mto importante, demorei mto pra descobrir, sem ele pode dar um monte de erro. Ele pede para tentar se conectar por 10 segundos a API
-            response.raise_for_status()
+                url, timeout=10 # Não tira o timeout nunca plmds, é mto importante, demorei mto pra descobrir, sem ele pode dar um monte de erro. Ele pede para tentar se conectar por 10 segundos a API
+            ) 
+            response.raise_for_status() #Verifica se não deu erro
             dados_completos[nome] = response.json()
         except requests.exceptions.RequestException:
             dados_completos[nome] = []
-            print("AVISO: Falha ao carregar os dados de um dos endpoints")
+            print("Falha ao carregar os dados de um dos endpoints")
 
     return dados_completos
 
+# Abaixo segue varios e varios gráficos. Todos eles foram feitos seguindo a documentação https://plotly.com/python/
+# Alguns deles são quase iguais a documentação, apenas trocando uma variavel ou duas, então não vou comentar os gráficos
+# São muitos e se eu tivesse mais tempo eu comentava, mas eu sei fazer cada um deles pq eu estudei a documentação
+# Os que eu não sei fazer muito bem e preciso copiar bastante da documentação são os do plotly.graph_objects, que eu ainda não estudei muito bem
 
+#em geral, os px.grafico são da plotly express, eles tem alguns parametros que vc tem que consultar na documentação de cada um, mas em geral:
+#title é o título do gráfico
+#color pode ser usado para criar graficos com mais de "um valor aparecendo", tipo diferentes dados sabe? dai ele gera uma cor para cada um no gráfico
+#labels renomeiam o nome do valor para ficar visualmente agradavel
+
+#Gráfico da distribuição dos valores das dívidas (histograma)
 @callback(
     Output("grafico-distribuicao-dos-valores-das-dividas-histograma", "figure"),
     Input("store-dados-principais", "data"),
@@ -61,6 +74,7 @@ def histograma_dvdh(dados_do_store):
     return fig
 
 
+#Gráfico da distribuição de valores por natureza da dívida (box-plot)
 @callback(
     Output("grafico-distribuicao-dos-valores-das-dividas-box-plot", "figure"),
     Input("store-dados-principais", "data"),
@@ -90,6 +104,7 @@ def box_plot_dvdh(dados_do_store):
     return fig
 
 
+#Grafico da distribuição dos scores das dívidas (histograma)
 @callback(
     Output("grafico-distribuicao-dos-scores-histograma", "figure"),
     Input("store-dados-principais", "data"),
@@ -116,6 +131,7 @@ def histograma_gds(dados_do_store):
     return fig
 
 
+#Grafico da idade das dívidas (barras)
 @callback(
     Output("grafico-distribuicao-da-idade-das-dividas-barras", "figure"),
     Input("store-dados-principais", "data"),
@@ -143,6 +159,7 @@ def barras_gdid(dados_do_store):
     return fig
 
 
+#Gráfico da composição da carteira por quantidade de CDAs (Tree-map)
 @callback(
     Output("grafico-composicao-da-carteira-por-natureza-tree-map", "figure"),
     Input("store-dados-principais", "data"),
@@ -170,6 +187,7 @@ def tree_map_gccn(dados_do_store):
     return fig
 
 
+#Gráfico da composição da carteira por situação (Funnil)
 @callback(
     Output("grafico-composicao-da-carteira-por-situacao-funnel", "figure"),
     Input("store-dados-principais", "data"),
@@ -204,6 +222,7 @@ def funnel_gccs(dados_do_store):
     return fig
 
 
+#Gráfico da Densidade da Dívida por valor e score (contorno)
 @callback(
     Output("grafico-valor-da-divida-vs-score-contour", "figure"),
     Input("store-dados-principais", "data"),
@@ -232,6 +251,7 @@ def contour_gvds(dados_do_store):
     return fig
 
 
+#Gráfico do valor da dívida por natureza (violin)
 @callback(
     Output("grafico-valor-da-divida-vs-natureza-violin", "figure"),
     Input("store-dados-principais", "data"),
@@ -259,6 +279,7 @@ def violin_gvds(dados_do_store):
     return fig
 
 
+#Gráfico da evolução da inscrição da dívida (linha)
 @callback(
     Output("grafico-evolucao-da-inscricao-de-dividas-line", "figure"),
     Input("store-dados-principais", "data"),
@@ -320,6 +341,7 @@ def line_geid(dados_do_store):
     return fig
 
 
+#Gráfico da evolução do valor da dívida por natureza (linha)
 @callback(
     Output("grafico-evolucao-por-natureza-soma-dividas-line", "figure"),
     Input("store-dados-principais", "data"),
@@ -354,6 +376,7 @@ def line_gensd(dados_do_store):
     return fig
 
 
+#Gráfico da evolução do valor da dívida por natureza (linha)
 @callback(
     Output("grafico-matriz-de-priorizacao-estrategica-bubble", "figure"),
     Input("store-dados-principais", "data"),
@@ -389,7 +412,7 @@ def line_gmpe(dados_do_store):
     return fig
 
 
-# Mexa aqui
+#Gráfico quantidade de dívidas por natureza (barras)
 @callback(
     Output("grafico-quantidade_cdas-bar", "figure"),
     Input("store-dados-principais", "data"),
@@ -405,6 +428,7 @@ def line_quantidade_cdas_bar(dados_do_store):
     fig = px.bar(
         df_resumo,
         x="name",
+        color="name",
         y="Quantidade",
         title="<b>Quantidade de Dívidas por Natureza</b>",
         labels={"Quantidade": "Número de Dívidas", "name": "Natureza"},
@@ -415,8 +439,10 @@ def line_quantidade_cdas_bar(dados_do_store):
     return fig
 
 
+#Gráfico valor total da dívida por natureza (barras)
 @callback(
-    Output("grafico-saldo_cdas-bar", "figure"), Input("store-dados-principais", "data")
+    Output("grafico-saldo_cdas-bar", "figure"),
+    Input("store-dados-principais", "data")
 )
 def line_saldo_cdas_bar(dados_do_store):
     if not dados_do_store or not dados_do_store.get("saldo_cdas"):
@@ -429,6 +455,7 @@ def line_saldo_cdas_bar(dados_do_store):
     fig = px.bar(
         df_resumo,
         x="name",
+        color="name",
         y="Saldo",
         title="<b>Valor Total da Dívida por Natureza</b>",
         labels={"name": "Natureza", "Saldo": "Valor Total"},
@@ -439,6 +466,7 @@ def line_saldo_cdas_bar(dados_do_store):
     return fig
 
 
+#Gráfico composição da carteira por quantidade de títulos (pizza)
 @callback(
     Output("grafico-quantidade_cdas-pie", "figure"),
     Input("store-dados-principais", "data"),
@@ -454,6 +482,7 @@ def line_quantidade_cdas(dados_do_store):
     fig = px.pie(
         df_resumo,
         values="Quantidade",
+        color="name",
         names="name",
         title="<b>Composição da Carteira por Quantidade de Títulos</b>",
         labels={"name": "Natureza"},
@@ -464,6 +493,7 @@ def line_quantidade_cdas(dados_do_store):
     return fig
 
 
+#Gráfico composição da carteira por valor (pizza)
 @callback(
     Output("grafico-saldo_cdas-pie", "figure"), Input("store-dados-principais", "data")
 )
@@ -478,6 +508,7 @@ def line_saldo_cdas(dados_do_store):
     fig = px.pie(
         df_resumo,
         values="Saldo",
+        color="name",
         names="name",
         title="<b>Composição da Carteira por Valor</b>",
         labels={"name": "Natureza", "Saldo": "Valor Total"},
@@ -488,6 +519,7 @@ def line_saldo_cdas(dados_do_store):
     return fig
 
 
+# Evolução das inscrições, cancelamentos e quitações por ano (linha)
 @callback(
     Output("grafico-inscricoes_cdas-line", "figure"),
     Input("store-dados-principais", "data"),
@@ -538,6 +570,7 @@ def line_inscricoes_cdas_line(dados_do_store):
     return fig
 
 
+#Gráfico comparativo de situação das dívidas por tipo (barras)
 @callback(
     Output("grafico-distribuicao_cdas-parallel", "figure"),
     Input("store-dados-principais", "data"),
@@ -567,6 +600,7 @@ def line_distribuicao_cdas(dados_do_store):
     return fig
 
 
+#Gráfico superfície de concentração da dívida (3D)
 @callback(
     Output("grafico-montante_acumulado_cdas-3d", "figure"),
     Input("store-dados-principais", "data"),
@@ -610,6 +644,7 @@ def line_montante_acumulado_cdas_3d(dados_do_store):
     return fig
 
 
+#Gráfico curva de concentração de valor por natureza (line)
 @callback(
     Output("grafico-montante_acumulado_cdas-line", "figure"),
     Input("store-dados-principais", "data"),
@@ -643,6 +678,7 @@ def line_inscricoes_cdas_line(dados_do_store):
     return fig
 
 
+#Gráfico mapa de calor da concentração de valor (heatmap)
 @callback(
     Output("grafico-montante_acumulado_cdas-heatmap", "figure"),
     Input("store-dados-principais", "data"),

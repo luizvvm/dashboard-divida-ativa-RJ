@@ -6,14 +6,16 @@ import dash_bootstrap_components as dbc
 
 layout_inicio = html.Div(
     [
+        #div pro Banner 
         html.Div(
             [
-                # O título fica DENTROOOOOOOOOOOOO do banner
                 html.H2("Análise da Dívida Ativa", className="display-5 fw-bold"),
             ],
             className="banner-container mb-5",
         ),
+        #dbc.Card é para moldura
         dbc.Card(
+            #dbc.CardBody é a parte de dentro, o espaço interno
             dbc.CardBody(
                 [
                     html.H3(
@@ -31,6 +33,7 @@ layout_inicio = html.Div(
                     ),
                     html.Div(
                         [
+                            #Isso já é mais comum então não vou comentar, é a mesma estrutura de lista do html.
                             html.Ul(
                                 [
                                     html.Li(
@@ -86,6 +89,7 @@ layout_inicio = html.Div(
                         ],
                         className="mb-3",
                     ),
+                    #Troca de tópico
                     html.H3(
                         "O que é a Dívida Ativa?",
                         className="text-2xl font-bold dark:text-white",
@@ -95,6 +99,7 @@ layout_inicio = html.Div(
                 têm com a Prefeitura e que já estão com o prazo de pagamento vencido.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
+                    #Troca de tópico
                     html.H3(
                         "Análise Descritiva",
                         className="text-2xl font-bold dark:text-white",
@@ -106,11 +111,10 @@ layout_inicio = html.Div(
             como vão se dispersando e se tornando mais isolados à medida que o valor aumenta.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da distribuição dos valores das dívidas (histograma)
                     dcc.Graph(
                         id="grafico-distribuicao-dos-valores-das-dividas-histograma"
                     ),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Observando o histograma, é perceptivel para o leitor que a maioria das dívidas são de baixo valor, 
                 isto é, ficam abaixo de R$ 700.000,00. Observe também o Rug Plot na parte superior,
@@ -118,11 +122,10 @@ layout_inicio = html.Div(
                 como vão se dispersando e se tornando mais isolados à medida que o valor aumenta.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da distribuição de valores por natureza da dívida (box-plot)
                     dcc.Graph(
                         id="grafico-distribuicao-dos-valores-das-dividas-box-plot"
                     ),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Agora, com este segundo gráfico da distribuição de valores por natureza da dívida, podemos perceber que a ideia de 
                 valor baixo e valor alto dependem muito do tipo da dívida.""",
@@ -143,9 +146,8 @@ layout_inicio = html.Div(
                 possui alta variabilidade e alto valor, as dívidas são muito diferentes uma das outras aqui e, em geral, representam valores bem maiores também.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Grafico da distribuição dos scores das dívidas (histograma)
                     dcc.Graph(id="grafico-distribuicao-dos-scores-histograma"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -154,9 +156,8 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Grafico da idade das dívidas (barras)
                     dcc.Graph(id="grafico-distribuicao-da-idade-das-dividas-barras"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -165,11 +166,10 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da composição da carteira por quantidade de CDAs (Tree-map)
                     dcc.Graph(
                         id="grafico-composicao-da-carteira-por-natureza-tree-map"
                     ),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -178,9 +178,8 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da composição da carteira por situação (Funnil)
                     dcc.Graph(id="grafico-composicao-da-carteira-por-situacao-funnel"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -189,19 +188,17 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Troca de tópico
                     html.H3(
                         "Análise de Correlações",
                         className="text-2xl font-bold dark:text-white",
-                    ),  ###
-                    #################################################################################
+                    ),  
                     html.P(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da Densidade da Dívida por valor e score (contorno)
                     dcc.Graph(id="grafico-valor-da-divida-vs-score-contour"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -210,9 +207,8 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico do valor da dívida por natureza (violin)
                     dcc.Graph(id="grafico-valor-da-divida-vs-natureza-violin"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -221,19 +217,17 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    ##################################################################################
+                    #Troca de tópico
                     html.H3(
                         "Análise Temporal",
                         className="text-2xl font-bold dark:text-white",
-                    ),  #########
-                    #################################################################################
+                    ),  
                     html.P(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da evolução da inscrição da dívida (linha)
                     dcc.Graph(id="grafico-evolucao-da-inscricao-de-dividas-line"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -242,9 +236,8 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da evolução do valor da dívida por natureza (linha)
                     dcc.Graph(id="grafico-evolucao-por-natureza-soma-dividas-line"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -253,9 +246,8 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico da matriz de priozição estratégia (bubble)
                     dcc.Graph(id="grafico-matriz-de-priorizacao-estrategica-bubble"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -264,7 +256,6 @@ layout_inicio = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
                 ]
             )
         ),
@@ -272,16 +263,19 @@ layout_inicio = html.Div(
 )
 
 
+#Layout da página (resumo)
 layout_resumo = html.Div(
     [
+        #Div pro banner
         html.Div(
             [
-                # O título fica DENTROOOOOOOOOOOOO do banner
                 html.H2("Resumo da Dívida Ativa", className="display-5 fw-bold"),
             ],
             className="banner-container-pag2 mb-5",
         ),
+        #dbc.Card é para moldura
         dbc.Card(
+            #dbc.CardBody é a parte de dentro, o espaço interno
             dbc.CardBody(
                 [
                     html.H3(
@@ -304,9 +298,8 @@ layout_resumo = html.Div(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non vehicula tellus, eu pellentesque diam. Phasellus convallis orci dictum nisi commodo""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    # Evolução das inscrições, cancelamentos e quitações por ano (linha)
                     dcc.Graph(id="grafico-inscricoes_cdas-line"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -315,9 +308,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico quantidade de dívidas por natureza (barras)
                     dcc.Graph(id="grafico-quantidade_cdas-bar"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -326,9 +318,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico valor total da dívida por natureza (barras)
                     dcc.Graph(id="grafico-saldo_cdas-bar"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -337,9 +328,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico composição da carteira por quantidade de títulos (pizza)
                     dcc.Graph(id="grafico-quantidade_cdas-pie"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -348,9 +338,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico composição da carteira por valor (pizza)
                     dcc.Graph(id="grafico-saldo_cdas-pie"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -359,9 +348,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico comparativo de situação das dívidas por tipo (barras)
                     dcc.Graph(id="grafico-distribuicao_cdas-parallel"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -370,9 +358,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico superfície de concentração da dívida (3D)
                     dcc.Graph(id="grafico-montante_acumulado_cdas-3d"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -381,9 +368,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico curva de concentração de valor por natureza (line)
                     dcc.Graph(id="grafico-montante_acumulado_cdas-line"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -392,9 +378,8 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
+                    #Gráfico mapa de calor da concentração de valor (heatmap)
                     dcc.Graph(id="grafico-montante_acumulado_cdas-heatmap"),
-                    # --------------------------------------------------------------------------------
                     html.P(
                         """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget iaculis lectus. Nunc in leo arcu. Donec nec lobortis ipsum. Sed ornare pretium quam eget dignissim. Suspendisse vitae tortor suscipit elit posuere ornare at a leo. Maecenas vestibulum ante a nibh pellentesque, nec tristique lorem convallis.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
@@ -403,25 +388,30 @@ layout_resumo = html.Div(
                         """Proin dapibus, turpis non sagittis dignissim, lorem augue aliquam ante, porttitor viverra ligula mauris sed dui. Proin tempus ex lorem, id lobortis dui pretium quis. Cras bibendum ullamcorper enim, eget suscipit libero facilisis non. Quisque elementum rhoncus lacus, et semper sapien ultricies vel. Aenean finibus sodales risus id cursus.""",
                         className="mb-3 text-gray-500 dark:text-gray-400",
                     ),
-                    #################################################################################
                 ]
             )
         ),
     ]
 )
 
-
+#layout pro painel geral com todos os gráficos
 layout_geral = html.Div(
     [
         html.H2("Painel Geral", className="display-5 fw-bold mb-4"),
         html.P("Apresentação de todos os gráficos feitos.", className="lead mb-5"),
-        #################################################################################
+        
+        #Row é para deixar uns itens do lado do outro, organizando em filas. Tudo que tiver aqui em baixo vai para a "fila/linha 1"
+        #Tudo que tiver aqui dentro vai tentar ser posicionado um do lado do outro
+        #linh 1
         dbc.Row(
             [
+                #Col é como se fosse uma "coluna" de dentro do row, então cada Col pode ser um gráfico diferente.
+                #linha 1 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da distribuição dos valores das dívidas (histograma)
                             dcc.Graph(
                                 id="grafico-distribuicao-dos-valores-das-dividas-histograma"
                             )
@@ -429,10 +419,12 @@ layout_geral = html.Div(
                     ),
                     width=6,
                 ),
+                #linha 1 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da distribuição de valores por natureza da dívida (box-plot)
                             dcc.Graph(
                                 id="grafico-distribuicao-dos-valores-das-dividas-box-plot"
                             )
@@ -442,23 +434,28 @@ layout_geral = html.Div(
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 2
         dbc.Row(
             [
+                #linha 2 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
-                            dcc.Graph(id="grafico-distribuicao-dos-scores-histograma")
+                            #Grafico da distribuição dos scores das dívidas (histograma)
+                            dcc.Graph(
+                                id="grafico-distribuicao-dos-scores-histograma"
+                                )
                         ],
                     ),
                     width=6,
                 ),
+                #linha 2 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Grafico da idade das dívidas (barras)
                             dcc.Graph(
                                 id="grafico-distribuicao-da-idade-das-dividas-barras"
                             )
@@ -468,14 +465,15 @@ layout_geral = html.Div(
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 3
         dbc.Row(
             [
+                #linha 3 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da composição da carteira por quantidade de CDAs (Tree-map)
                             dcc.Graph(
                                 id="grafico-composicao-da-carteira-por-natureza-tree-map"
                             )
@@ -483,10 +481,12 @@ layout_geral = html.Div(
                     ),
                     width=6,
                 ),
+                #linha 3 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da composição da carteira por situação (Funnil)
                             dcc.Graph(
                                 id="grafico-composicao-da-carteira-por-situacao-funnel"
                             )
@@ -496,38 +496,46 @@ layout_geral = html.Div(
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 4
         dbc.Row(
             [
+                #linha 4 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
-                            dcc.Graph(id="grafico-valor-da-divida-vs-score-contour")
+                            #Gráfico da Densidade da Dívida por valor e score (contorno)
+                            dcc.Graph(
+                                id="grafico-valor-da-divida-vs-score-contour"
+                                )
                         ],
                     ),
                     width=6,
                 ),
+                #linha 4 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
-                            dcc.Graph(id="grafico-valor-da-divida-vs-natureza-violin")
+                            #Gráfico do valor da dívida por natureza (violin)
+                            dcc.Graph(
+                                id="grafico-valor-da-divida-vs-natureza-violin"
+                                )
                         ],
                     ),
                     width=6,
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 5
         dbc.Row(
             [
+                #linha 5 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da evolução da inscrição da dívida (linha)
                             dcc.Graph(
                                 id="grafico-evolucao-da-inscricao-de-dividas-line"
                             )
@@ -535,27 +543,30 @@ layout_geral = html.Div(
                     ),
                     width=6,
                 ),
+                #linha 5 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da evolução do valor da dívida por natureza (linha)
                             dcc.Graph(
                                 id="grafico-evolucao-por-natureza-soma-dividas-line"
-                            )
+                                )
                         ],
                     ),
                     width=6,
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 6
         dbc.Row(
             [
+                #linha 6 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
+                            #Gráfico da matriz de priozição estratégia (bubble)
                             dcc.Graph(
                                 id="grafico-matriz-de-priorizacao-estrategica-bubble"
                             )
@@ -563,111 +574,159 @@ layout_geral = html.Div(
                     ),
                     width=6,
                 ),
+                #linha 6 coluna 2
                 dbc.Col(
                     html.Div(
                         className="chart-card",
-                        children=[dcc.Graph(id="grafico-inscricoes_cdas-line")],
+                        # Evolução das inscrições, cancelamentos e quitações por ano (linha)
+                        children=[
+                            dcc.Graph(
+                                id="grafico-inscricoes_cdas-line"
+                                )
+                            ],
                     ),
                     width=6,
                 ),
             ]
         ),
-        #################################################################################
-        #################################################################################
+        #linha 7
         dbc.Row(
             [
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-quantidade_cdas-bar")],
-                    ),
-                    width=6,
-                ),
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-saldo_cdas-bar")],
-                    ),
-                    width=6,
-                ),
-            ]
-        ),
-        #################################################################################
-        #################################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-quantidade_cdas-pie")],
-                    ),
-                    width=6,
-                ),
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-saldo_cdas-pie")],
-                    ),
-                    width=6,
-                ),
-            ]
-        ),
-        #################################################################################
-        #################################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-distribuicao_cdas-parallel")],
-                    ),
-                    width=6,
-                ),
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-montante_acumulado_cdas-3d")],
-                    ),
-                    width=6,
-                ),
-            ]
-        ),
-        #################################################################################
-        #################################################################################
-        dbc.Row(
-            [
-                dbc.Col(
-                    html.Div(
-                        className="chart-card",
-                        children=[dcc.Graph(id="grafico-montante_acumulado_cdas-line")],
-                    ),
-                    width=6,
-                ),
+                #linha 7 coluna 1
                 dbc.Col(
                     html.Div(
                         className="chart-card",
                         children=[
-                            dcc.Graph(id="grafico-montante_acumulado_cdas-heatmap")
+                            #Gráfico quantidade de dívidas por natureza (barras)
+                            dcc.Graph(
+                                id="grafico-quantidade_cdas-bar"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+                #linha 7 coluna 2
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        children=[
+                            #Gráfico valor total da dívida por natureza (barras)
+                            dcc.Graph(
+                                id="grafico-saldo_cdas-bar"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+            ]
+        ),
+        #linha 8
+        dbc.Row(
+            [
+                #linha 8 coluna 1
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        children=[
+                            #Gráfico composição da carteira por quantidade de títulos (pizza)
+                            dcc.Graph(
+                                id="grafico-quantidade_cdas-pie"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+                #linha 8 coluna 2
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        children=[
+                            #Gráfico composição da carteira por valor (pizza)
+                            dcc.Graph(
+                                id="grafico-saldo_cdas-pie"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+            ]
+        ),
+        #linha 9
+        dbc.Row(
+            [
+                #linha 9 coluna 1
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        #Gráfico comparativo de situação das dívidas por tipo (barras)
+                        children=[
+                            dcc.Graph(
+                                id="grafico-distribuicao_cdas-parallel"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+                #linha 9 coluna 2
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        #Gráfico superfície de concentração da dívida (3D)
+                        children=[
+                            dcc.Graph(
+                                id="grafico-montante_acumulado_cdas-3d"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+            ]
+        ),
+        #linha 10
+        dbc.Row(
+            [
+                #linha 10 coluna 1
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        children=[
+                            #Gráfico curva de concentração de valor por natureza (line)
+                            dcc.Graph(
+                                id="grafico-montante_acumulado_cdas-line"
+                                )
+                            ],
+                    ),
+                    width=6,
+                ),
+                #linha 10 coluna 2
+                dbc.Col(
+                    html.Div(
+                        className="chart-card",
+                        children=[
+                            #Gráfico mapa de calor da concentração de valor (heatmap)
+                            dcc.Graph(
+                                id="grafico-montante_acumulado_cdas-heatmap"
+                                )
                         ],
                     ),
                     width=6,
                 ),
             ]
         ),
-        #################################################################################
     ]
 )
 
-
-######################################
+#Layout para a página de busca
 layout_busca = html.Div(
     [
         html.H2("Ferramenta de Busca de Dívidas", className="display-5 fw-bold mb-4"),
         dbc.Card(
             dbc.CardBody(
                 [
+                    #Linha 1 
                     dbc.Row(
                         [
+                            #Coluna 1
                             dbc.Col(
                                 [
                                     html.H5(
@@ -679,11 +738,22 @@ layout_busca = html.Div(
                                         [
                                             dbc.Label("Natureza da Dívida:"),
                                             dcc.Dropdown(
+                                                #ID que salva o valor que será enviado para o callback_busca
+                                                #Dependendo da opção selecionada, um valor diferente é passado
                                                 id="filtro-natureza",
                                                 options=[
-                                                    {"label": "IPTU", "value": "IPTU"},
-                                                    {"label": "ISS", "value": "ISS"},
-                                                    {"label": "ITBI", "value": "ITBI"},
+                                                    {
+                                                        "label": "IPTU",
+                                                        "value": "IPTU"
+                                                    },
+                                                    {
+                                                        "label": "ISS",
+                                                        "value": "ISS"
+                                                    },
+                                                    {
+                                                        "label": "ITBI",
+                                                        "value": "ITBI"
+                                                    },
                                                     {
                                                         "label": "Taxas",
                                                         "value": "Taxas",
@@ -708,6 +778,8 @@ layout_busca = html.Div(
                                                 className="mt-3 text-base text-gray-900 dark:text-white font-bold",
                                             ),
                                             dcc.Dropdown(
+                                                #ID que salva o valor que será enviado para o callback_busca
+                                                #Dependendo da opção selecionada, um valor diferente é passado
                                                 id="filtro-agrupamento_situacao",
                                                 options=[
                                                     {
@@ -728,10 +800,13 @@ layout_busca = html.Div(
                                             ),
                                         ]
                                     ),
+                                    #Filtro por ano
                                     html.Div(
                                         [
                                             dbc.Label("Ano da Inscrição:"),
                                             dcc.Input(
+                                                #ID que salva o valor que será enviado para o callback_busca
+                                                # Quanto ao valor, ele depende, pq é um input e não um dropdown, então o usuario escreve em vez de selecionar
                                                 id="filtro-ano",
                                                 type="number",
                                                 className="form-control mb-2",
@@ -742,7 +817,7 @@ layout_busca = html.Div(
                                 ],
                                 width=6,
                             ),
-                            # Coluna da Ordenação
+                            # Coluna 2
                             dbc.Col(
                                 [
                                     html.H5(
@@ -759,6 +834,8 @@ layout_busca = html.Div(
                                                 className="mt-3 text-base text-gray-900 dark:text-white font-bold",
                                             ),
                                             dcc.Dropdown(
+                                                #ID que salva o valor que será enviado para o callback_busca
+                                                #Dependendo da opção selecionada, um valor diferente é passado
                                                 id="ordenar-por",
                                                 options=[
                                                     {
@@ -790,6 +867,8 @@ layout_busca = html.Div(
                                             ),
                                             dcc.RadioItems(
                                                 id="ordem",
+                                                #ID que salva o valor que será enviado para o callback_busca
+                                                #dependendo doq o usuário selecionar, um valor diferente é enviado
                                                 options=[
                                                     {
                                                         "label": "Descendente",
@@ -811,15 +890,21 @@ layout_busca = html.Div(
                             ),
                         ]
                     ),
+                    #linha 2
                     dbc.Row(
+                        #coluna 1 e única
                         dbc.Col(
                             dbc.Button(
                                 "Buscar",
+                                #ID que salva o valor que será enviado para o callback_busca. O valor é n_clicks
                                 id="botao-buscar",
                                 color="primary",
                                 className="mt-3",
                             ),
-                            width={"size": 6, "offset": 3},
+                            width={
+                                "size": 6,
+                                "offset": 3
+                                },
                         ),
                         className="text-center",
                     ),
@@ -830,13 +915,24 @@ layout_busca = html.Div(
         html.Div(
             [
                 html.H4("Resultados da Busca"),
+                #Spinner é para a animação, aparece um simbolo loading
                 dbc.Spinner(
+                    #Componente dash para criar tabelas
                     dash_table.DataTable(
                         id="tabela-resultados-busca",
                         columns=[
-                            {"name": "CDA", "id": "numCDA"},
-                            {"name": "Ano", "id": "ano"},
-                            {"name": "Natureza", "id": "natureza"},
+                            {
+                                "name": "CDA",
+                                "id": "numCDA"
+                            },
+                            {
+                                "name": "Ano",
+                                "id": "ano"
+                            },
+                            {
+                                "name": "Natureza",
+                                "id": "natureza"
+                            },
                             {
                                 "name": "Valor (R$)",
                                 "id": "valor_saldo_atualizado",
@@ -849,9 +945,14 @@ layout_busca = html.Div(
                                 "type": "numeric",
                                 "format": {"specifier": ".2f"},
                             },
-                            {"name": "Situação", "id": "agrupamento_situacao"},
+                            {
+                                "name": "Situação",
+                                "id": "agrupamento_situacao"
+                            },
                         ],
+                        #Quantidade de elementos em cada página
                         page_size=15,
+                        #Personalização com css:
                         style_table={"overflowX": "auto"},
                         style_cell={"textAlign": "center"},
                         style_header={
@@ -868,6 +969,9 @@ layout_busca = html.Div(
 
 def create_layout():
     # Cria a estrutura completa da página, com a sidebar e o conteúdo.
+    # Só vou comentar o que eu julgar necessário, a maioria é html e css (com Dash claro)
+    # O que for um pouco mais diferente doq o simples html e css eu vou comentar uma vez,
+    # não vou comentar em todas suas repetições não porque o comentário servira para todos
     sidebar = html.Div(
         className="sidebar",
         children=[
@@ -886,7 +990,10 @@ def create_layout():
                             "align-items": "center",
                         },
                         children=[
-                            html.Img(src="/assets/lamdec.png", style={"height": "60%"})
+                            html.Img(
+                                src="/assets/lamdec.png",
+                                style={"height": "60%"}
+                                )
                         ],
                     ),
                     html.H1("Dívida Ativa", className="h3 fw-bold"),
@@ -897,11 +1004,12 @@ def create_layout():
                 [
                     dbc.NavLink(
                         [
-                            html.I(className="bi bi-house-door fs-5"),
+                            html.I(className="bi bi-house-door fs-5"), #esse daqui é para por icone, mas ainda n achei um bom. Talvez eu ponha se tiver tempo
                             html.Span("Início", className="ms-3"),
                         ],
+                        #href é para onde será enviado ao clica nesse link. Quem controla isso é o dcc.location
                         href="/",
-                        active="exact",
+                        active="exact", #aplica estilo mais escuro para mostrar ao usuario onde ele está
                     ),
                     dbc.NavLink(
                         [
@@ -928,8 +1036,8 @@ def create_layout():
                         active="exact",
                     ),
                 ],
-                vertical=True,
-                pills=False,  # Pills está adicionando um fundo azul horrivel, vou arrumar com CSS
+                vertical=True, #Importante, por padrão fica tudo na horizontal, com isso eles ficam empilhados
+                pills=False,  # Pills está adicionando um fundo azul horrivel e redondo, desativei pq vou arrumar com CSS
                 className="sidebar-nav",
             ),
             html.Div(
@@ -945,10 +1053,11 @@ def create_layout():
 
     content = html.Main(id="page-content", className="content")
 
-    # refresh=False deixa a pagina com navegação sem "bug" de loading, se não fica atualizando e fica estranho
     return html.Div(
         [
-            dcc.Location(id="url", refresh=False),
+            #Ele que monitora o navegador. Quando a url muda ele muda a propriedade pathname para corresponder a URL. A gente utiliza ele como input no app.py
+            dcc.Location(id="url", refresh=False),     # refresh=False deixa a pagina com navegação sem "bug" de loading, se não fica atualizando e fica estranho
+            #armazena dados no navegador do usuario
             dcc.Store(id="store-dados-principais"),
             sidebar,
             content,

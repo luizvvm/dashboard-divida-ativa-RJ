@@ -12,6 +12,7 @@ from layout import (
     layout_busca,
 )
 
+#carregando alguns componentes de estilização externos
 external_scripts = [{"src": "https://cdn.tailwindcss.com"}]
 external_stylesheets = [
     dbc.themes.BOOTSTRAP,  # Para os componentes de grid (Row, Col) e botões
@@ -20,20 +21,26 @@ external_stylesheets = [
 
 app = dash.Dash(
     __name__,
-    external_scripts=external_scripts,
-    external_stylesheets=external_stylesheets,
+    external_scripts=external_scripts, 
+    external_stylesheets=external_stylesheets, 
     suppress_callback_exceptions=True,  # para não causar erro ao receber callback de uma pagina que não seja a atual
 )
 server = app.server
 
+#Função lá do "layout.py" que a gente usa pra criar o layout (autoexplicativo ne kkkkk)
 app.layout = create_layout()
 
-# Importa os callbacks para que sejam registrados pelo Dash
+# Importa os callbacks para que sejam registrados aqui
 import callbacks_graficos
 import callbacks_busca
 
 
-@app.callback(Output("page-content", "children"), [Input("url", "pathname")])
+@app.callback(
+    Output("page-content", "children"),
+    [Input("url", "pathname")] #pega as mudanças na url capturadas pelo dcc.location() lá do "layout.py"
+    )
+
+#retorna a variavel do layout correspondente a pagina atual capturada pelo pathname
 def render_page_content(pathname):
     if pathname == "/" or pathname == "/inicio":
         return layout_inicio

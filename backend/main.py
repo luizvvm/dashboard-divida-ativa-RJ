@@ -6,20 +6,19 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-# Carregando os DADOS
+# Carregando os DADOS e fazendo um leve processamento nele para evitar conflitos
 try:
     df_cdas = pd.read_json("data/cdas.json")
     df_cdas["numCDA"] = df_cdas["numCDA"].astype(str)
+    #pegando o ano que são os 4 primeiros numeros do numCDA
     df_cdas["ano"] = df_cdas["numCDA"].str[:4].astype(int)
 except FileNotFoundError:
     print('ERRO: O arquivo "data/cdas.json" não foi encontrado.')
-    # necessário criar um dataframe vazio pq se não pode dar ruim se iniciar
+    # necessário criar um dataframe vazio pq se não da ruim se iniciar
     df_cdas = pd.DataFrame()
 
 
-# Endpoints
-
-
+# Endpoints/definindo a URL que a API ira "expor"
 @app.get("/")
 def read_root():
     return {"message": "API para o Desafio Técnico LAMDEC - Backend"}
@@ -35,15 +34,17 @@ def get_resumo(file_name: str):
     except FileNotFoundError:
         # Retorna um erro HTTP 404 se o arquivo não for encontrado.
         raise HTTPException(
-            status_code=404, detail=f"Arquivo '{file_name}.json' não encontrado."
-        )
+            status_code=404, detail=f'Arquivo "{file_name}.json" não encontrado.')
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao processar o arquivo: {e}")
 
 
 @app.get("/cda/search", response_model=List[Dict])
 def search_cdas(
-    ano: Optional[int] = None,
+    #Query paramters, documentação deles: https://fastapi.tiangolo.com/pt/tutorial/query-params/#parametros-de-consulta-obrigatorios
+    #olhe o request lá no callbacks_busca
+    # O FastAPI ve a rota "/cda/search" e chama esta função
+    ano: Optional[int] = None, #Ex.: Ele vê "?ano=2023" e coloca 2023 aqui. Se não tiver nada, é none por padrão
     natureza: Optional[str] = None,
     situacao: Optional[str] = None,
     score_min: Optional[float] = None,
@@ -51,11 +52,10 @@ def search_cdas(
     ordenar_por: Optional[str] = "valor_saldo_atualizado",
     ordem: Optional[str] = "desc",
 ):
-
+    # Agora a função executa com os valores que o frontend "enviou".
+    
     if df_cdas.empty:
-        raise HTTPException(
-            status_code=503, detail="Dados de CDAs não disponíveis no momento."
-        )
+        raise HTTPException(status_code=503, detail="Dados de CDAs não disponíveis no momento.")
 
     # Cópia do DataFrame completo
     df_filtered = df_cdas.copy()
@@ -73,13 +73,16 @@ def search_cdas(
     if saldo_min:
         df_filtered = df_filtered[df_filtered["valor_saldo_atualizado"] >= saldo_min]
     if situacao:
-        # Mapeia a string da situação para o código numérico correspondente
-        situacao_map = {"cancelada": -1, "em cobrança": 0, "quitada": 1}
+        # Mapeia a string da situação para o código numérico
+        situacao_map = {
+            "cancelada": -1,
+            "em cobrança": 0,
+            "quitada": 1
+            }
         situacao_code = situacao_map.get(situacao.lower())
+        #is not none necessário para executar mesmo se o valor for zero. Isso porque o zero pode ser interpretado como False, o que não executaria o if
         if situacao_code is not None:
-            df_filtered = df_filtered[
-                df_filtered["agrupamento_situacao"] == situacao_code
-            ]
+            df_filtered = df_filtered[df_filtered["agrupamento_situacao"] == situacao_code]
 
     # Aplica a ordenação
     ascending = ordem.lower() == "asc"

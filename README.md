@@ -40,15 +40,16 @@ O projeto aqui desenvolvido busca fornecer insights valiosos sobre a carteira de
 1. **Backend**
 Da pasta raiz do projeto, abra um terminal para rodar o servidor:
 ```bash
-# Navegue até a pasta do backend
-cd backend
 
-# Crie e ative o ambiente virtual (Windows)
+# Na pasta raiz, crie e ative o ambiente virtual (Windows)
 python -m venv venv
 .\venv\Scripts\activate
 
-# Instale os requerimentos
+# Instale os requerimentos (pode levar um tempo)
 pip install -r requirements.txt
+
+# Navegue até a pasta do backend
+cd backend
 
 # Inicie o servidor
 python -m uvicorn main:app --reload
@@ -88,7 +89,7 @@ Dai eu fiz a API no primeiro dia. Já no segundo dia o foco mudou para a constru
 
 ### Links Úteis
 
-- [FastAPI](https://fastapi.tiangolo.com/)
+- [FastAPI](https://fastapi.tiangolo.com/pt/tutorial/first-steps/)
 - [Documentação do Dash](https://dash.plotly.com/)
 - [Dash Bootstrap Components](https://dash-bootstrap-components.opensource.faculty.ai/)
 - [Gráficos Plotly](https://plotly.com/python/)
