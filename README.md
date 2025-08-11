@@ -67,6 +67,8 @@ python app.py
 ```
 Dai basta acessar a url indicada no terminal.
 
+**ATENÇÂO:** Se der algum erro de carregamento ou seja o que for, **recarregue a pagina**. Esses erros são raros mas as vezes ocorrem.
+
 ## O que eu fiz para construir o projeto:
 
 Esse projeto foi muito enriquecedor para mim porque, durante ele, li muita documentação e aprendi muitas coisas novas. Eu iniciei o desafio lendo a documentação:
