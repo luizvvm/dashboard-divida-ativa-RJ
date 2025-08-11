@@ -33,6 +33,8 @@ O projeto aqui desenvolvido busca fornecer insights valiosos sobre a carteira de
 - Pandas;
 - NumPy.
 
+Utilizei **Dash** porque é ideal para a criação de dashboards. React é um diferencial e, eu gostaria de pontuar que o Dash utiliza html, css, Javascript e React! Então uma aplicação web feita em Dash, no navegador do usuário, é de fato html, css, javascript e, principalmente, **React**.
+
 **Organização**
 - Usei "Black" para identar o código. Se quiser as versões sem identação bonitinha, acesse o último commit do dia 09/10/2025.
 
